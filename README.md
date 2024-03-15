@@ -1,4 +1,7 @@
 # my-images-app
+- Node.js 21.7.0
+- Vue.js 3
+- Vuetify 3
 
 ## Project setup
 ```

@@ -1,26 +1,26 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+  import SideBar from "./components/SideBar.vue"
+  import ImageGallary from "./components/ImageGallary.vue"
+  import { ref } from "vue"
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+  // Ajout d'une constante pour choix couleur/gris pour affichage photos
+  const isWithColor = ref(true)
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  const onSelectOption = (isColor) => {
+    isWithColor.value = isColor
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <v-app>
+    <!-- Accès aux routes définies dans script setup -->
+    <router-view />
+
+    <!-- SIDEBAR COMPONENT avec utilisation de l'évènement enfant-->
+    <SideBar @selectOption="onSelectOption" />
+    <v-main>
+      <!-- CARDS COMPONENT avec la couleur comme "accessoire" -->
+      <ImageGallary :isWithColor="isWithColor" />
+    </v-main>
+  </v-app>
+</template>
